@@ -3,7 +3,7 @@
 A beautiful and intuitive water tracking application built with React, TypeScript, Tailwind CSS, and shadcn/ui components. This application helps users monitor their daily water intake and stay hydrated.
 
 <div align="center">
-  <img src="preview.png" alt="Water App Preview" width="50%" style="max-width: 350px;">
+  <img src="preview.png" alt="Water App Preview" width="30%" style="max-width: 250px;">
 </div>
 
 ## Features
