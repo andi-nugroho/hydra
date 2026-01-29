@@ -44,19 +44,19 @@
 
     --radius: 1rem;
 
-    /* Water-themed custom colors */
+
     --water-light: 199 100% 95%;
     --water-medium: 199 89% 60%;
     --water-deep: 210 100% 35%;
     --water-gradient: linear-gradient(135deg, hsl(199, 89%, 48%) 0%, hsl(187, 72%, 50%) 100%);
     --water-gradient-soft: linear-gradient(180deg, hsl(199, 100%, 95%) 0%, hsl(0, 0%, 100%) 100%);
-    
-    /* Reminder states */
+
+
     --reminder-ok: 152 69% 45%;
     --reminder-warning: 45 93% 55%;
     --reminder-urgent: 0 84% 60%;
 
-    /* Component active color for mobile menu */
+
     --component-active-color-default: hsl(199, 89%, 48%);
 
     --sidebar-background: 0 0% 98%;
@@ -68,7 +68,7 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 199 89% 48%;
 
-    /* Chart colors */
+
     --chart-1: 199 89% 48%;
     --chart-2: 175 70% 45%;
     --chart-3: 152 69% 45%;
@@ -142,12 +142,12 @@
 }
 
 @layer components {
-  /* Water progress ring animation */
+
   .water-progress {
     transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Ripple animation for buttons */
+
   .ripple-effect {
     position: relative;
     overflow: hidden;
@@ -169,14 +169,14 @@
     transition: transform 0s, opacity 0s;
   }
 
-  /* Glass effect card */
+
   .glass-card {
     background: hsl(var(--card) / 0.8);
     backdrop-filter: blur(12px);
     border: 1px solid hsl(var(--border) / 0.5);
   }
 
-  /* Water wave animation */
+
   @keyframes wave {
     0%, 100% {
       transform: translateX(-50%) translateY(0);
@@ -190,7 +190,7 @@
     animation: wave 3s ease-in-out infinite;
   }
 
-  /* Pulse animation for reminders */
+
   @keyframes pulse-reminder {
     0%, 100% {
       opacity: 1;
@@ -206,7 +206,7 @@
     animation: pulse-reminder 2s ease-in-out infinite;
   }
 
-  /* Floating animation */
+
   @keyframes float {
     0%, 100% {
       transform: translateY(0);
@@ -220,7 +220,7 @@
     animation: float 4s ease-in-out infinite;
   }
 
-  /* Mobile menu styles */
+  
   .menu {
     display: flex;
     align-items: center;

@@ -31,7 +31,7 @@ const loadState = (): AppState => {
     if (stored) {
       const data = JSON.parse(stored);
       const today = getTodayKey();
-      
+
       // Reset if it's a new day
       if (data.date !== today) {
         return {
@@ -40,7 +40,7 @@ const loadState = (): AppState => {
           reminderInterval: data.reminderInterval || 60,
         };
       }
-      
+
       return {
         entries: data.entries.map((e: any) => ({
           ...e,
@@ -53,7 +53,7 @@ const loadState = (): AppState => {
   } catch (e) {
     console.error('Error loading state:', e);
   }
-  
+
   return {
     entries: [],
     target: 2000,
@@ -78,16 +78,16 @@ const Index = () => {
   const isMobile = useIsMobile();
 
   const totalConsumed = state.entries.reduce((sum, e) => sum + e.amount, 0);
-  const lastDrinkTime = state.entries.length > 0 
-    ? state.entries[state.entries.length - 1].time 
+  const lastDrinkTime = state.entries.length > 0
+    ? state.entries[state.entries.length - 1].time
     : null;
 
-  // Save state on changes
+
   useEffect(() => {
     saveState(state);
   }, [state]);
 
-  // Notification reminder
+  
   useEffect(() => {
     if (!lastDrinkTime || !('Notification' in window)) return;
     if (Notification.permission !== 'granted') return;
@@ -112,7 +112,7 @@ const Index = () => {
       amount,
       time: new Date(),
     };
-    
+
     setState(prev => ({
       ...prev,
       entries: [...prev.entries, newEntry],
@@ -196,23 +196,23 @@ const Index = () => {
       case 'home':
         return (
           <div className="space-y-6">
-            <ReminderBanner 
-              lastDrinkTime={lastDrinkTime} 
-              reminderInterval={state.reminderInterval} 
+            <ReminderBanner
+              lastDrinkTime={lastDrinkTime}
+              reminderInterval={state.reminderInterval}
             />
-            
+
             <div className="flex justify-center py-6">
-              <WaterProgress 
-                current={totalConsumed} 
-                target={state.target} 
+              <WaterProgress
+                current={totalConsumed}
+                target={state.target}
                 size={isMobile ? 'md' : 'lg'}
               />
             </div>
-            
+
             <QuickAddButtons onAdd={addDrink} />
           </div>
         );
-      
+
       case 'drink':
         return (
           <div className="space-y-6">
@@ -220,9 +220,9 @@ const Index = () => {
               <h2 className="text-xl font-bold text-foreground">Tambah Minum</h2>
               <p className="text-sm text-muted-foreground">Pilih cepat atau masukkan manual</p>
             </div>
-            
+
             <QuickAddButtons onAdd={addDrink} />
-            
+
             <div className="relative py-4">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-border"></div>
@@ -231,11 +231,11 @@ const Index = () => {
                 <span className="bg-background px-4 text-sm text-muted-foreground">atau</span>
               </div>
             </div>
-            
+
             <ManualInput onAdd={addDrink} />
           </div>
         );
-      
+
       case 'history':
         return (
           <div className="space-y-4">
@@ -247,11 +247,11 @@ const Index = () => {
                 </p>
               </div>
             </div>
-            
+
             <DrinkHistory entries={state.entries} onDelete={deleteEntry} />
           </div>
         );
-      
+
       case 'settings':
         return (
           <div className="space-y-4">
@@ -259,7 +259,7 @@ const Index = () => {
               <h2 className="text-xl font-bold text-foreground">Pengaturan</h2>
               <p className="text-sm text-muted-foreground">Sesuaikan target dan pengingat</p>
             </div>
-            
+
             <SettingsPanel
               target={state.target}
               reminderInterval={state.reminderInterval}
@@ -269,7 +269,7 @@ const Index = () => {
             />
           </div>
         );
-      
+
       default:
         return null;
     }
@@ -310,11 +310,11 @@ const Index = () => {
               {activeTab === 'settings' && 'Pengaturan'}
             </h2>
             <p className="text-muted-foreground">
-              {new Date().toLocaleDateString('id-ID', { 
-                weekday: 'long', 
-                day: 'numeric', 
-                month: 'long', 
-                year: 'numeric' 
+              {new Date().toLocaleDateString('id-ID', {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
               })}
             </p>
           </div>
@@ -325,7 +325,7 @@ const Index = () => {
 
       {/* Mobile Bottom Navigation */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-lg border-t border-border z-50">
-        <InteractiveMenu 
+        <InteractiveMenu
           activeId={activeTab}
           onItemClick={setActiveTab}
         />
